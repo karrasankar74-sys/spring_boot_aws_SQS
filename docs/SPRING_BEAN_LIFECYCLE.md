@@ -22,78 +22,78 @@ Think of it like a **person's life journey**:
 ┌──────────────────────────────────────────────────────────────┐
 │           SPRING APPLICATION STARTS                          │
 └──────────────────────────────────────────────────────────────┘
-                           ↓
-     ┌────────────────────────────────────────────────┐
-     │  STEP 1: COMPONENT SCANNING                    │
-     │  Spring scans for @Component, @Service, etc.   │
-     │  Creates BeanDefinition (blueprint only)       │
-     └────────────────────────────────────────────────┘
-                           ↓
-     ┌────────────────────────────────────────────────┐
-     │  STEP 2: BEAN INSTANTIATION                    │
-     │  Constructor is called                         │
-     │  Object created in memory                      │
-     │  Dependencies NOT yet injected                 │
-     └────────────────────────────────────────────────┘
-                           ↓
-     ┌────────────────────────────────────────────────┐
-     │  STEP 3: DEPENDENCY INJECTION                  │
-     │  @Autowired fields are injected                │
-     │  Setter injection happens                      │
-     │  All dependencies now available                │
-     └────────────────────────────────────────────────┘
-                           ↓
-     ┌────────────────────────────────────────────────┐
-     │  STEP 4: AWARE INTERFACES (Optional)           │
-     │  BeanNameAware.setBeanName()                   │
-     │  ApplicationContextAware.setApplicationContext()
-     └────────────────────────────────────────────────┘
-                           ↓
-     ┌────────────────────────────────────────────────┐
-     │  STEP 5: PRE-INITIALIZATION PROCESSING         │
-     │  BeanPostProcessor.postProcessBefore...()      │
-     │  Spring magic happens here!                    │
-     └────────────────────────────────────────────────┘
-                           ↓
-     ┌────────────────────────────────────────────────┐
-     │  STEP 6: @PostConstruct / init-method          │
-     │  Your initialization code runs here            │
-     │  Perfect for setup tasks                       │
-     └────────────────────────────────────────────────┘
-                           ↓
-     ┌────────────────────────────────────────────────┐
-     │  STEP 7: POST-INITIALIZATION PROCESSING        │
-     │  BeanPostProcessor.postProcessAfter...()       │
-     │  AOP Proxy creation happens HERE               │
-     └────────────────────────────────────────────────┘
-                           ↓
-     ┌────────────────────────────────────────────────┐
-     │  STEP 8: BEAN READY FOR USE ✓                  │
-     │  Registered in singleton cache                 │
-     │  Can be injected into other beans              │
-     │  Available via context.getBean()               │
-     └────────────────────────────────────────────────┘
-                           ↓
-     ┌────────────────────────────────────────────────┐
-     │  STEP 9: APPLICATION RUNNING                   │
-     │  Your code uses the bean                       │
-     └────────────────────────────────────────────────┘
-                           ↓
+                            ↓
+      ┌────────────────────────────────────────────────┐
+      │  STEP 1: COMPONENT SCANNING                    │
+      │  Spring scans for @Component, @Service, etc.   │
+      │  Creates BeanDefinition (blueprint only)       │
+      └────────────────────────────────────────────────┘
+                            ↓
+      ┌────────────────────────────────────────────────┐
+      │  STEP 2: BEAN INSTANTIATION                    │
+      │  Constructor is called                         │
+      │  Object created in memory                      │
+      │  Dependencies NOT yet injected                 │
+      └────────────────────────────────────────────────┘
+                            ↓
+      ┌────────────────────────────────────────────────┐
+      │  STEP 3: DEPENDENCY INJECTION                  │
+      │  @Autowired fields are injected                │
+      │  Setter injection happens                      │
+      │  All dependencies now available                │
+      └────────────────────────────────────────────────┘
+                            ↓
+      ┌────────────────────────────────────────────────┐
+      │  STEP 4: AWARE INTERFACES (Optional)           │
+      │  BeanNameAware.setBeanName()                   │
+      │  ApplicationContextAware.setApplicationContext()
+      └────────────────────────────────────────────────┘
+                            ↓
+      ┌────────────────────────────────────────────────┐
+      │  STEP 5: PRE-INITIALIZATION PROCESSING         │
+      │  BeanPostProcessor.postProcessBefore...()      │
+      │  Spring magic happens here!                    │
+      └────────────────────────────────────────────────┘
+                            ↓
+      ┌────────────────────────────────────────────────┐
+      │  STEP 6: @PostConstruct / init-method          │
+      │  Your initialization code runs here            │
+      │  Perfect for setup tasks                       │
+      └────────────────────────────────────────────────┘
+                            ↓
+      ┌────────────────────────────────────────────────┐
+      │  STEP 7: POST-INITIALIZATION PROCESSING        │
+      │  BeanPostProcessor.postProcessAfter...()       │
+      │  AOP Proxy creation happens HERE               │
+      └────────────────────────────────────────────────┘
+                            ↓
+      ┌────────────────────────────────────────────────┐
+      │  STEP 8: BEAN READY FOR USE ✓                  │
+      │  Registered in singleton cache                 │
+      │  Can be injected into other beans              │
+      │  Available via context.getBean()               │
+      └────────────────────────────────────────────────┘
+                            ↓
+      ┌────────────────────────────────────────────────┐
+      │  STEP 9: APPLICATION RUNNING                   │
+      │  Your code uses the bean                       │
+      └────────────────────────────────────────────────┘
+                            ↓
 ┌──────────────────────────────────────────────────────────────┐
 │           APPLICATION SHUTDOWN TRIGGERED                     │
 └──────────────────────────────────────────────────────────────┘
-                           ↓
-     ┌────────────────────────────────────────────────┐
-     │  STEP 10: @PreDestroy / destroy-method         │
-     │  Cleanup code runs                             │
-     │  Close connections, threads, etc.              │
-     └────────────────────────────────────────────────┘
-                           ↓
-     ┌────────────────────────────────────────────────┐
-     │  STEP 11: BEAN DESTROYED                       │
-     │  Removed from memory                           │
-     │  Eligible for garbage collection               │
-     └────────────────────────────────────────────────┘
+                            ↓
+      ┌────────────────────────────────────────────────┐
+      │  STEP 10: @PreDestroy / destroy-method         │
+      │  Cleanup code runs                             │
+      │  Close connections, threads, etc.              │
+      └────────────────────────────────────────────────┘
+                            ↓
+      ┌────────────────────────────────────────────────┐
+      │  STEP 11: BEAN DESTROYED                       │
+      │  Removed from memory                           │
+      │  Eligible for garbage collection               │
+      └────────────────────────────────────────────────┘
 ```
 
 ---
@@ -540,7 +540,7 @@ public void init() {
 }
 ```
 
-**Interview Answer:** "Constructor is called during instantiation before dependencies are injected. @PostConstruct is called after all dependencies are injected, making it the safe place for initialization."
+**Interview Answer:** "Constructor is called during instantiation before dependencies are injected. @PostConstruct is called after all dependencies are injected, making it the safe place for initialization logic."
 
 ---
 
@@ -952,6 +952,448 @@ public class Consumer {
 
 ---
 
+## 🏢 Enterprise Features for Experienced Developers
+
+### ObjectProvider & Lazy Resolution
+
+**Modern Alternative to @Autowired:**
+
+```java
+@Component
+public class AdvancedService {
+    
+    // Traditional @Autowired - Fails if bean doesn't exist
+    @Autowired
+    private OptionalDependency dep;  // Throws exception if missing
+    
+    // ObjectProvider - Handles missing beans gracefully
+    @Autowired
+    private ObjectProvider<ExpensiveService> expensiveServiceProvider;
+    
+    public void process() {
+        // Get bean if it exists, fallback to default
+        ExpensiveService service = expensiveServiceProvider.getIfAvailable(
+            () -> new ExpensiveService("default")
+        );
+        
+        // Or check existence
+        expensiveServiceProvider.ifAvailable(s -> {
+            System.out.println("Service is available: " + s);
+        });
+    }
+}
+```
+
+**Key Differences:**
+- `@Autowired` - Eager resolution, fails fast if missing
+- `ObjectProvider` - Lazy resolution, null-safe, supports fallbacks
+- `ObjectProvider<T>` with `@Lazy` - Most powerful for optional dependencies
+
+**Use Case:** Framework code, plugin systems, optional integrations (Redis cache, external APIs).
+
+---
+
+### BeanFactory vs ApplicationContext Initialization
+
+**Lazy vs Eager Bean Creation:**
+
+```java
+// BeanFactory: Lazy initialization (default)
+BeanFactory factory = new DefaultListableBeanFactory();
+// Beans NOT created yet
+
+Bean bean1 = (Bean) factory.getBean("myBean");  // Created on demand
+Bean bean2 = (Bean) factory.getBean("myBean");  // Same instance retrieved
+
+// ApplicationContext: Eager initialization (most common)
+ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
+// All singleton beans created immediately during startup
+
+UserService service = context.getBean(UserService.class);  // Already created
+```
+
+**Implications for Lifecycle:**
+
+```java
+// BeanFactory timeline:
+// getBean() call → STEP 1-8 entire lifecycle
+
+// ApplicationContext timeline:
+// Constructor call → STEP 1-8 entire lifecycle for all singletons
+// getBean() call → Bean already ready
+```
+
+**Production Impact:**
+- `ApplicationContext` - Higher startup time, better error detection
+- `BeanFactory` - Lower startup time, errors may appear later
+- **Recommendation:** Use `ApplicationContext` for applications, `BeanFactory` for containers.
+
+---
+
+### Scoped Proxies for Prototype Bean Lifecycle
+
+**Inverse the Prototype Lifecycle Rule:**
+
+```java
+// Without proxy: @PreDestroy never fires
+@Component
+@Scope("prototype")
+public class PrototypeBean {
+    @PreDestroy
+    public void cleanup() {
+        System.out.println("Never called!");  // ✗ Not managed
+    }
+}
+
+// With proxy: @PreDestroy fires when proxy is destroyed
+@Component
+@Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class ManagedPrototypeBean {
+    @PreDestroy
+    public void cleanup() {
+        System.out.println("Now this fires!");  // ✓ Proxy manages lifecycle
+    }
+}
+
+// Usage:
+@Component
+public class Consumer {
+    @Autowired
+    private ManagedPrototypeBean bean;  // Injected by proxy
+    
+    public void test() {
+        // Each call to bean getters creates new instance internally
+        // But proxy cleans up old instances
+    }
+}
+```
+
+**When to Use:**
+- Prototype beans with thread-local state
+- Request-scoped beans needing cleanup
+- Stateful beans in multi-threaded environments
+
+**Performance Note:** Scoped proxies add minimal overhead (~5-10% per call).
+
+---
+
+### AOP: Runtime Proxies vs Compile-Time Weaving
+
+**Spring Default: Runtime JDK/CGLIB Proxies**
+
+```java
+@Component
+@Transactional  // Creates proxy in STEP 7
+public class UserService {
+    public void saveUser(User u) { }
+}
+
+// Proxy chain: UserServiceProxy → UserService
+// Created at runtime using reflection
+// Visible in stack traces as UserService$$EnhancerBySpringCGLIB$$xyz
+```
+
+**Alternative: AspectJ Compile-Time Weaving**
+
+```java
+// In pom.xml:
+<plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>aspectj-maven-plugin</artifactId>
+</plugin>
+
+@Component
+@Transactional
+public class UserService {
+    public void saveUser(User u) { }
+}
+
+// Bytecode modified at compile-time
+// No proxy overhead at runtime
+// No visibility in code (pure bytecode)
+```
+
+**Comparison:**
+
+| Aspect | JDK/CGLIB Proxy | AspectJ Weaving |
+|--------|---|---|
+| **When Created** | Runtime (STEP 7) | Compile-time |
+| **Overhead** | 10-15% per call | 0-2% per call |
+| **Stack Traces** | Shows proxy class | Clean stack traces |
+| **Private Methods** | ✗ Not intercepted | ✓ Intercepted |
+| **Constructor Calls** | ✗ Not intercepted | ✓ Intercepted |
+| **Setup Complexity** | Simple | Requires build plugin |
+| **Performance** | Good for most cases | Better for high-throughput |
+
+**Recommendation:** Use default proxies for most applications. Use AspectJ weaving only if profiling shows AOP overhead > 5%.
+
+---
+
+### BeanPostProcessor Chain & Order Gotchas
+
+**Multiple Processors with @Order:**
+
+```java
+@Component
+@Order(1)
+public class FirstProcessor implements BeanPostProcessor {
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) {
+        System.out.println("First processor wrapping: " + beanName);
+        return new FirstProxy(bean);  // Wraps bean
+    }
+}
+
+@Component
+@Order(2)
+public class SecondProcessor implements BeanPostProcessor {
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) {
+        System.out.println("Second processor wrapping: " + beanName);
+        return new SecondProxy(bean);  // Wraps result of first
+    }
+}
+
+// Result: SecondProxy(FirstProxy(OriginalBean))
+// Nested proxies - each wraps the result of previous!
+```
+
+**Common Gotcha: Proxy Chain Depth**
+
+```java
+// With 5 BeanPostProcessors creating proxies:
+// MyClass$$EnhancerBySpringCGLIB$$xxx$$EnhancerBySpringCGLIB$$yyy...
+// Stack depth increases with each processor
+// Can cause performance issues with deep chains
+
+// Solution: Minimize processors or use @ConditionalOnBean
+@Component
+@ConditionalOnBean(name = "mySpecificBean")
+public class SelectiveProcessor implements BeanPostProcessor {
+    // Only processes when specific bean exists
+}
+```
+
+**Execution Order is NOT Same as Creation:**
+- Created in declared order
+- Each processor sees ALL previous processors' modifications
+- Unknown processor order = unpredictable behavior
+
+---
+
+### Event Listeners During Lifecycle
+
+**When Do Events Fire?**
+
+```java
+@Component
+public class LifecycleEventListener {
+    
+    @EventListener
+    public void onContextStarted(ContextStartedEvent event) {
+        System.out.println("Context started");
+        // Fires AFTER all singleton beans initialized
+        // STEP 9 equivalent
+    }
+    
+    @EventListener
+    public void onContextRefreshed(ContextRefreshedEvent event) {
+        System.out.println("Context refreshed");
+        // Fires after all beans created and initialized
+        // SAFE place to access all beans
+    }
+}
+
+@Component
+public class Service {
+    @PostConstruct
+    public void init() {
+        System.out.println("Service initialized");
+        // Fires in STEP 6
+        // Event listeners NOT yet fired!
+    }
+}
+
+// Order: Service.init() → Then event listeners fire
+```
+
+**Production Pattern:**
+
+```java
+@Component
+public class ApplicationStartupService {
+    
+    @Autowired
+    private List<InitializationHandler> handlers;
+    
+    @EventListener
+    public void onStartup(ContextRefreshedEvent event) {
+        // ALL beans are initialized here
+        // Safe to initialize cross-bean dependencies
+        handlers.forEach(InitializationHandler::afterAllBeansReady);
+    }
+}
+```
+
+---
+
+### Graceful Shutdown (Spring Boot 2.3+)
+
+**Configuration:**
+
+```yaml
+# application.yml
+server:
+  shutdown: graceful  # Was 'immediate' before 2.3
+  
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+```
+
+**Implementation:**
+
+```java
+@Component
+public class GracefulShutdownService implements ApplicationListener<ContextClosedEvent> {
+    
+    private static final Logger log = LoggerFactory.getLogger(GracefulShutdownService.class);
+    
+    @Override
+    public void onApplicationEvent(ContextClosedEvent event) {
+        log.info("Application shutting down gracefully...");
+        // Triggers @PreDestroy on all singletons
+        // Context.close() is called automatically by Spring Boot
+    }
+}
+
+@Component
+public class ResourceManager {
+    
+    @PreDestroy
+    public void shutdown() {
+        log.info("Cleaning up resources...");
+        // Called by graceful shutdown handler
+        // 30 seconds available to complete
+    }
+}
+```
+
+**Timeline:**
+```
+1. Kill signal (SIGTERM) received
+2. Graceful shutdown initiated
+3. No new requests accepted
+4. Existing requests allowed to complete (30s timeout)
+5. @PreDestroy methods fire
+6. Application terminates
+```
+
+**vs Old Behavior:**
+- Before: Immediate termination on SIGTERM
+- Now: Graceful with timeout (configurable)
+
+---
+
+### Testing Lifecycle with @DirtiesContext
+
+**Lifecycle Impact on Tests:**
+
+```java
+@SpringBootTest
+public class IntegrationTests {
+    
+    @Autowired
+    private UserService userService;
+    
+    @Test
+    public void test1() {
+        // Uses shared context with all singleton beans
+    }
+    
+    @Test
+    @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
+    public void test2() {
+        // After this test: context.close() called
+        // ALL @PreDestroy methods fire
+        // Expensive: new context created for next test
+    }
+    
+    @Test
+    public void test3() {
+        // Uses new context (if test2 already ran)
+    }
+}
+```
+
+**Cost Implications:**
+
+```
+3 tests without @DirtiesContext:
+- Context creation: 1x (shared)
+- @PostConstruct calls: 1x each bean
+- Total time: ~1 second
+
+3 tests with @DirtiesContext after each:
+- Context creation: 3x (fresh each test)
+- @PostConstruct calls: 3x each bean
+- Total time: ~10 seconds (10x slower!)
+```
+
+**Best Practices:**
+
+```java
+@SpringBootTest
+public class Tests {
+    
+    @Test
+    @DirtiesContext  // Only when absolutely necessary
+    public void testRequiringFreshContext() {
+        // Modify singletons or static state
+    }
+    
+    @Test
+    public void normalTest() {
+        // Don't use @DirtiesContext
+        // Use @MockBean for dependencies instead
+    }
+}
+```
+
+---
+
+### Production Checklist (Enhanced)
+
+**Initialization:**
+- [ ] **Don't do heavy work in constructors** — Use `@PostConstruct`
+- [ ] **Prefer constructor injection** — Better for testing, avoids circular deps
+- [ ] **Use `ObjectProvider<T>`** — For optional dependencies in frameworks
+- [ ] **Consider `@Lazy`** — For expensive beans, watch for hidden errors
+- [ ] **Validate configuration in `@PostConstruct`** — Fail fast on startup
+- [ ] **Use `ContextRefreshedEvent`** — For cross-bean initialization logic
+- [ ] **Log in `@PostConstruct`** — Not in constructor, easier to debug
+
+**Proxies & AOP:**
+- [ ] **Use `@Transactional` judiciously** — Creates proxy overhead (10-15%)
+- [ ] **Don't rely on `instanceof`** — Bean might be a proxy
+- [ ] **Be aware of proxy chain depth** — Multiple processors = nested proxies
+- [ ] **Test proxy behavior** — Use `@ConditionalOnBean` for processors
+
+**Lifecycle Management:**
+- [ ] **Implement graceful shutdown** — Configure `server.shutdown=graceful`
+- [ ] **Implement `@PreDestroy`** — For cleanup (threads, connections, etc.)
+- [ ] **Use scoped proxies cautiously** — For prototype beans needing cleanup
+- [ ] **Avoid prototype scope** — They don't get destroyed, can leak resources
+- [ ] **Track singleton count** — Beans accumulate over app lifetime
+
+**Testing:**
+- [ ] **Use `@DirtiesContext` sparingly** — 10x performance penalty per test
+- [ ] **Use `@MockBean` instead** — Reset dependencies without fresh context
+- [ ] **Test initialization order** — Use `@Order` if multiple BeanPostProcessors
+- [ ] **Watch for lazy initialization errors** — Appear in first use, not startup
+
+---
+
 ## 📋 Spring Bean Lifecycle Checklist
 
 **For Beginners:**
@@ -975,6 +1417,18 @@ public class Consumer {
 - [ ] Understand AOP proxy creation in STEP 7
 - [ ] Know what happens if @PostConstruct throws exception
 
+**For Experienced Developers:**
+- [ ] Understand `ObjectProvider<T>` vs `@Autowired`
+- [ ] Know `BeanFactory` vs `ApplicationContext` lifecycle differences
+- [ ] Understand scoped proxies for prototype lifecycle
+- [ ] Know when to use AspectJ weaving vs runtime proxies
+- [ ] Understand BeanPostProcessor ordering and nesting
+- [ ] Know event listener timing in lifecycle
+- [ ] Configure graceful shutdown properly
+- [ ] Use `@DirtiesContext` wisely in tests
+- [ ] Monitor bean creation count in production
+- [ ] Profile AOP proxy overhead if needed
+
 ---
 
 ## 🔗 References
@@ -982,6 +1436,9 @@ public class Consumer {
 - [Spring Official Documentation - Bean Lifecycle](https://docs.spring.io/spring-framework/reference/core/beans/factory-extension.html)
 - [Spring AOP & Proxies](https://docs.spring.io/spring-framework/reference/core/aop.html)
 - [Bean Scopes](https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html)
+- [ObjectProvider Documentation](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/ObjectProvider.html)
+- [Graceful Shutdown (Spring Boot 2.3+)](https://spring.io/blog/2020/03/27/graceful-shutdown-now-available-in-spring-boot-2-3-0-m1)
+- [AspectJ Weaving Guide](https://docs.spring.io/spring-framework/reference/core/aop-api.html)
 
 ---
 
@@ -997,41 +1454,7 @@ public class Consumer {
 | **Prototype** | New instance created each time you request it |
 | **@Transactional** | Creates a proxy wrapping your bean in STEP 7 |
 | **@Lazy** | Bean created on first use, not at startup |
-
----
-
-## 📌 Final Interview Summary - Must Know Points
-
-**Critical Points:**
-1. Spring Bean Lifecycle has 11 steps
-2. Constructor called in STEP 2 (before dependencies injected)
-3. Dependencies injected in STEP 3
-4. @PostConstruct called in STEP 6 (all dependencies ready)
-5. @PreDestroy called in STEP 10 (before destruction)
-6. @PostConstruct called AFTER dependency injection completes
-7. @PreDestroy only runs for singleton beans
-8. Prototype beans don't trigger @PreDestroy
-9. Exception in @PostConstruct fails bean creation
-10. @PostConstruct/init-method are NOT called in constructor
-11. AOP proxies created in STEP 7 (post-initialization)
-12. @Lazy delays bean creation to first use
-
-**Common Interview Traps to Avoid:**
-- ✗ Assuming @PostConstruct runs at application startup (it runs after bean creation)
-- ✗ Using @Autowired fields in constructor (they're null until STEP 3)
-- ✗ Relying on @PreDestroy for prototype beans (never runs)
-- ✗ Heavy operations in @PostConstruct (delays startup)
-- ✗ Thinking your bean is the same object injected (might be a proxy)
-- ✗ Forgetting to call context.close() for @PreDestroy to run
-
----
-
-## 🎯 Quick Reference Table
-
-| When? | What? | Where? | Conditions? |
-|-------|-------|--------|------------|
-| STEP 2 | Constructor called | `public MyService()` | Always |
-| STEP 3 | Dependencies injected | `@Autowired private Dep dep;` | If bean exists |
-| STEP 6 | Initialization | `@PostConstruct public void init()` | Always after injection |
-| STEP 7 | Proxy creation | `@Transactional` | If annotation present |
-| STEP 10 | Cleanup | `@PreDestroy public void cleanup()` | Only for singletons + context.close() |
+| **ObjectProvider<T>** | Lazy resolution with null-safety and fallbacks |
+| **Graceful Shutdown** | Set `server.shutdown=graceful` for production |
+| **Scoped Proxy** | Allows @PreDestroy to fire for prototype beans |
+| **@DirtiesContext** | 10x slower - use `@MockBean` instead |
